@@ -40,12 +40,14 @@ def generate_dataset(
     for i in range(len(train_data) - seq_len - pre_len):
         for pre in range(1,pre_len+1):
             train_X.append(np.array(train_data[i : i + seq_len]))
-            train_Y.append(np.array(train_data[i + seq_len : i + seq_len + pre]))
+            train_Y.append(np.array(train_data[i + seq_len : i + seq_len + pre_len]))
     for i in range(len(test_data) - seq_len - pre_len):
         for pre in range(1,pre_len+1):
             test_X.append(np.array(test_data[i : i + seq_len]))
-            test_Y.append(np.array(test_data[i + seq_len : i + seq_len + pre]))
-    return np.array(train_X), np.array(train_Y), np.array(test_X), np.array(test_Y)
+            test_Y.append(np.array(test_data[i + seq_len : i + seq_len + pre_len]))
+
+    # print(train_X)
+    return train_X, train_Y, test_X, test_Y
 
 
 def generate_torch_datasets(
